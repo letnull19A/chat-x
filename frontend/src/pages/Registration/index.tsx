@@ -18,7 +18,7 @@ const Registration = () => {
         <Inputfield title='Confirm password here' />
         <Button label='Regist now!' />
         <Link
-          onClick='/login'
+          to='/login'
           label='Have account'
         />
       </form>
