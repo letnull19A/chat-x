@@ -8,7 +8,7 @@ export type TInputProps = {
 export type TInputfieldProps = {
   message?: string
   title?: string
-  input?: TInputProps
+  input?: InputHTMLAttributes
 }
 
 const Inputfield = (props: TInputfieldProps) => {

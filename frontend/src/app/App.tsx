@@ -34,6 +34,10 @@ function App() {
       setStatus(ConnectionStatus.CONNECTED)
     })
 
+    socketRef.current?.on('error', () => {
+      setStatus(ConnectionStatus.ERROR)
+    })
+
     socketRef.current?.on('disconnect', () => {
       setStatus(ConnectionStatus.CLOSED)
     })

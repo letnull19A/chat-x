@@ -33,6 +33,17 @@ OnGatewayDisconnect{
     return 'Hello world!';
   }
 
+  @SubscribeMessage('join')
+  handleJoinChat(client: Socket, payload: any): string {
+    return 'joined in chat'
+  }
+
+  handleConnectToChat() {}
+
+  handleDisconnectFromChat() {}
+
+  handleLeaveFromChat() {}
+
   handleConnection() {
     this.logger.log('successful connected')
   }

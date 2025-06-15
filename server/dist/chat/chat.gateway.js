@@ -23,6 +23,12 @@ let ChatGateway = class ChatGateway {
     handleMessage(client, payload) {
         return 'Hello world!';
     }
+    handleJoinChat(client, payload) {
+        return 'joined in chat';
+    }
+    handleConnectToChat() { }
+    handleDisconnectFromChat() { }
+    handleLeaveFromChat() { }
     handleConnection() {
         this.logger.log('successful connected');
     }
@@ -41,6 +47,12 @@ __decorate([
     __metadata("design:paramtypes", [socket_io_1.Socket, Object]),
     __metadata("design:returntype", String)
 ], ChatGateway.prototype, "handleMessage", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('join'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [socket_io_1.Socket, Object]),
+    __metadata("design:returntype", String)
+], ChatGateway.prototype, "handleJoinChat", null);
 exports.ChatGateway = ChatGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({
         cors: {
