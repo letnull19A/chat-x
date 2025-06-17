@@ -1,6 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { User } from './user.entity';
+import {
+  Injectable,
+  Inject,
+} from '@nestjs/common'
+import { Repository } from 'typeorm'
+import { User } from './user.entity'
 
 @Injectable()
 export class UserService {
@@ -10,25 +13,29 @@ export class UserService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
+    return await this.userRepository.find()
   }
 
   async findOne(id): Promise<User> {
-    return await this.userRepository.findOneBy({id: id})
+    return await this.userRepository.findOneBy({
+      id: id,
+    })
   }
 
-  async findByLogin(login: string): Promise<User> {
+  async findByLogin(
+    login: string,
+  ): Promise<User> {
     return await this.userRepository.findOneBy({
-      login: login
+      login: login,
     })
   }
 
   async deleteById(id: string): Promise<void> {
-   const currentUser = await this.findOne(id)
+    const currentUser = await this.findOne(id)
 
-   if (!currentUser) 
-     throw new Error('user not found')
+    if (!currentUser)
+      throw new Error('user not found')
 
-   await currentUser.remove()
+    await currentUser.remove()
   }
 }

@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource } from 'typeorm'
 
 export const databaseProviders = [
   {
@@ -12,13 +12,12 @@ export const databaseProviders = [
         password: '',
         database: 'chatx',
         entities: [
-            __dirname + '/../**/*.entity{.ts,.js}',
+          __dirname + '/../**/*.entity{.ts,.js}',
         ],
         synchronize: true,
-      });
+      })
 
-      return dataSource.initialize();
+      return dataSource.initialize()
     },
   },
-];
-
+]
