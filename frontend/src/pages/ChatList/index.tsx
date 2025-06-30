@@ -1,4 +1,4 @@
-import { Header } from '@ui'
+import { Header, Button } from '@ui'
 import { ChatApi } from '@api'
 import { useNavigate } from 'react-router-dom'
 import './style.css'
@@ -7,6 +7,10 @@ const ChatList = () => {
   const data = ChatApi.getAll()
 
   const navigate = useNavigate()
+
+  const floatButtonProps = {
+    onClick: () => navigate('/chat-create'),
+  }
 
   return (
     <>
@@ -32,6 +36,12 @@ const ChatList = () => {
             </li>
           ))}
         </ul>
+        <div className='newchat-button'>
+          <Button
+            label='New chat'
+            button={floatButtonProps}
+          />
+        </div>
       </div>
     </>
   )

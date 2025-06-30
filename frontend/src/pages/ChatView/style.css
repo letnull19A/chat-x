@@ -1,6 +1,10 @@
 .chat-view__form {
   width: 100%;
   height: 45px;
+  position: fixed;
+  z-index: 998;
+  bottom: 26px;
+  left: 0;
 }
 
 .chat-view__form form {
@@ -25,5 +29,5 @@
 
 .chat-view__messages {
   width: 100%;
-  height: calc(100svh - 45px);
+  height: 100svh;
 }

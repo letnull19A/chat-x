@@ -13,6 +13,12 @@ const ChatApi = {
         users: 1,
         online: 1,
       },
+      {
+        id: 2,
+        name: 'Чат хакеров и разрабоьчиков на C/C++',
+        users: 72662,
+        online: 626,
+      },
     ]
   },
 }

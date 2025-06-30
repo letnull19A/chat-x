@@ -56,8 +56,8 @@ __decorate([
 exports.ChatGateway = ChatGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({
         cors: {
-            origin: "*"
-        }
+            origin: '*',
+        },
     }),
     __metadata("design:paramtypes", [nestjs_pino_1.Logger])
 ], ChatGateway);

@@ -36,3 +36,10 @@
 .chat-list__item-title {
   font-weight: 600;
 }
+
+.newchat-button {
+  position: fixed;
+  z-index: 998;
+  top: calc(100svh - 70px);
+  left: calc(100% - 110px);
+}

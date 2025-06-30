@@ -1,0 +1,9 @@
+.burger-menu {
+  height: 100svh;
+  width: 65%;
+  background-color: #1c1c1c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}

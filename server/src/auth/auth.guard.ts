@@ -36,6 +36,7 @@ export class AuthGuard implements CanActivate {
     const request = context
       .switchToHttp()
       .getRequest()
+
     const token =
       this.extractTokenFromHeader(request)
 
@@ -46,7 +47,7 @@ export class AuthGuard implements CanActivate {
     try {
       const payload =
         await this.jwtService.verifyAsync(token, {
-          secret: jwtConstants.secret,
+          secret: process.env.AUTH_ACCESS,
         })
       request['user'] = payload
     } catch {

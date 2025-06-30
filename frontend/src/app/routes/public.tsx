@@ -5,6 +5,7 @@ import {
   Login,
   Registration,
   Main,
+  CreateChat,
 } from '@pages'
 import { Default } from '@layouts'
 
@@ -42,6 +43,14 @@ export const publicRouter: RouteObject[] = [
     element: (
       <Default>
         <Main />
+      </Default>
+    ),
+  },
+  {
+    path: '/chat-create',
+    element: (
+      <Default>
+        <CreateChat />
       </Default>
     ),
   },

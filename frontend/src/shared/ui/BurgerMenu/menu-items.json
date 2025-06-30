@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Settings",
+    "path": "/settings"
+  },
+  {
+    "title": "Account",
+    "path": "/account"
+  },
+  {
+    "title": "Logout",
+    "path": "/logout"
+  }
+]

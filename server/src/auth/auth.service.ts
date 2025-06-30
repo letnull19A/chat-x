@@ -37,9 +37,27 @@ export class AuthService {
       nickname: user.nickname,
     }
 
+    const accessOptions = {
+      secret: process.env.AUTH_SECRET,
+      expiresIn: process.env.AUTH_ACCESS_LIFE,
+    }
+
+    const refreshOptions = {
+      secret: process.env.AUTH_SECRET,
+      expiresIn: process.env.AUTH_REFRESH_LIFE,
+    }
+
     return {
       access_token:
-        await this.jwtService.signAsync(payload),
+        await this.jwtService.signAsync(
+          payload,
+          accessOptions,
+        ),
+      refresh_token:
+        await this.jwtService.signAsync(
+          payload,
+          refreshOptions,
+        ),
     }
   }
 }
