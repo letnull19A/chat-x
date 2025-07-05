@@ -20,7 +20,11 @@ export const publicRouter: RouteObject[] = [
   },
   {
     path: '/chat-list',
-    element: <ChatList />,
+    element: (
+      <Default>
+        <ChatList />
+      </Default>
+    ),
   },
   {
     path: '/login',

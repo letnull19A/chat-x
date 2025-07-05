@@ -7,3 +7,18 @@
   left: 0;
   z-index: 999;
 }
+
+.burger-menu__container {
+  margin: 70px 20px;
+}
+
+.burger-menu__item {
+  color: #fff;
+  list-style: none;
+  margin-block: 20px;
+}
+
+.menu-button {
+  height: 64px;
+  width: 64px;
+}

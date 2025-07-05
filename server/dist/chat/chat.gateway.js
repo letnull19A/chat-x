@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChatGateway = void 0;
 const websockets_1 = require("@nestjs/websockets");
@@ -40,18 +39,18 @@ let ChatGateway = class ChatGateway {
 exports.ChatGateway = ChatGateway;
 __decorate([
     (0, websockets_1.WebSocketServer)(),
-    __metadata("design:type", typeof (_b = typeof socket_io_1.Server !== "undefined" && socket_io_1.Server) === "function" ? _b : Object)
+    __metadata("design:type", socket_io_1.Server)
 ], ChatGateway.prototype, "server", void 0);
 __decorate([
     (0, websockets_1.SubscribeMessage)('message'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_c = typeof socket_io_1.Socket !== "undefined" && socket_io_1.Socket) === "function" ? _c : Object, Object]),
+    __metadata("design:paramtypes", [socket_io_1.Socket, Object]),
     __metadata("design:returntype", String)
 ], ChatGateway.prototype, "handleMessage", null);
 __decorate([
     (0, websockets_1.SubscribeMessage)('join'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_d = typeof socket_io_1.Socket !== "undefined" && socket_io_1.Socket) === "function" ? _d : Object, Object]),
+    __metadata("design:paramtypes", [socket_io_1.Socket, Object]),
     __metadata("design:returntype", String)
 ], ChatGateway.prototype, "handleJoinChat", null);
 exports.ChatGateway = ChatGateway = __decorate([
@@ -60,6 +59,6 @@ exports.ChatGateway = ChatGateway = __decorate([
             origin: '*',
         },
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof nestjs_pino_1.Logger !== "undefined" && nestjs_pino_1.Logger) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [nestjs_pino_1.Logger])
 ], ChatGateway);
 //# sourceMappingURL=chat.gateway.js.map

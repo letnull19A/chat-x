@@ -8,7 +8,19 @@
     "path": "/account"
   },
   {
+    "title": "Chats",
+    "path": "/chat-list"
+  },
+  {
     "title": "Logout",
     "path": "/logout"
+  },
+  {
+    "title": "Registration",
+    "path": "/reg"
+  },
+  {
+    "title": "Login",
+    "path": "/login"
   }
 ]

@@ -5,6 +5,7 @@ import {
   type TBurgerContext,
 } from '@contexts'
 import data from './menu-items.json'
+import { Button } from '@ui'
 import './style.css'
 
 type TBurgerMenuItemProps = {
@@ -17,11 +18,19 @@ const BurgerMenuItem = (
 ) => {
   const navigate = useNavigate()
   const { title, path } = props
+  const burgerMenuContext = useContext(
+    BurgerContext,
+  )
+
+  const onHandleClick = () => {
+    navigate(path),
+      burgerMenuContext.setIsOpen(false)
+  }
 
   return (
     <li
       className='burger-menu__item'
-      onClick={() => navigate(path)}
+      onClick={onHandleClick}
     >
       {title}
     </li>
@@ -33,15 +42,28 @@ const BurgerMenu = () => {
     data as Array<TBurgerMenuItemProps>
   const context = useContext(BurgerContext)
 
-  return (
+  const buttonAttributes = {
+    className: 'menu-button',
+    onClick: () => {
+      if (!context) return
+
+      context.setIsOpen(!context.isOpen)
+    },
+  }
+
+  return context.isOpen ? (
     <div className='burger-menu'>
-      <ul>
+      <Button
+        label='menu'
+        button={buttonAttributes}
+      />
+      <ul className='burger-menu__container'>
         {menuItems.map((item, id) => (
           <BurgerMenuItem {...item} key={id} />
         ))}
       </ul>
     </div>
-  )
+  ) : null
 }
 
 export default BurgerMenu

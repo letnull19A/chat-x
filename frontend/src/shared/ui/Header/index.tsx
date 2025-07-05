@@ -3,32 +3,51 @@ import { useContext } from 'react'
 import {
   SocketContext,
   ConnectionStatus,
+  BurgerContext,
 } from '@contexts'
-import { Container } from '@ui'
+import { Button } from '@ui'
 import './style.css'
 
+/**
+ * TODO: move this in separate component: Statusbar
+ * */
 const StatusBar = () => {
   const socket = useContext(SocketContext)
 
   return socket.status ===
     ConnectionStatus.CONNECTED ? (
-    <i>connected</i>
+    <div className='status-connected'></div>
   ) : (
-    <i>waiting...</i>
+    <div className='status-waiting'></div>
   )
 }
 
 const Header = () => {
   const navigate = useNavigate()
 
+  const burgerContext = useContext(BurgerContext)
+
+  const menuAttributes = {
+    onClick: () => {
+      if (!burgerContext) return
+
+      burgerContext.setIsOpen(
+        !burgerContext.isOpen,
+      )
+    },
+    className: 'burger-button',
+  }
+
   return (
     <header>
-      <Container>
-        <span onClick={() => navigate('/')}>
-          chat-x
-        </span>
-        <StatusBar />
-      </Container>
+      <Button
+        label='menu'
+        button={menuAttributes}
+      />
+      <span onClick={() => navigate('/')}>
+        chat-x
+      </span>
+      <StatusBar />
     </header>
   )
 }

@@ -6,4 +6,27 @@ header {
   z-index: 998;
   top: 0;
   left: 0;
+  display: flex;
+  font-family: sans-serif;
+  flex-direction: row;
+  align-items: center;
+}
+
+.burger-button {
+  width: 64px;
+  height: 64px;
+}
+
+.status-connected,
+.status-wait {
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  border: 2px solid #8a8a8a;
+  background-color: #5a5a5a;
+}
+
+.status-connected {
+  border-color: yellowgreen;
+  background-color: lightgreen;
 }

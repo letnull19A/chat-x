@@ -1,4 +1,4 @@
-import { Header, Button } from '@ui'
+import { Button } from '@ui'
 import { ChatApi } from '@api'
 import { useNavigate } from 'react-router-dom'
 import './style.css'
@@ -14,7 +14,6 @@ const ChatList = () => {
 
   return (
     <>
-      <Header />
       <div className='chat-list'>
         <ul className='chat-list__view'>
           {data.map((item) => (
