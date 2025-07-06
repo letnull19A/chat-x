@@ -18,6 +18,7 @@ header {
 }
 
 .status-connected,
+.status-error,
 .status-wait {
   width: 16px;
   height: 16px;
@@ -29,4 +30,9 @@ header {
 .status-connected {
   border-color: yellowgreen;
   background-color: lightgreen;
+}
+
+.status-error {
+  border-color: #aa0000;
+  background-color: #dd0000;
 }
