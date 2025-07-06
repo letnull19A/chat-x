@@ -12,6 +12,7 @@ export enum ConnectionStatus {
   RECONNECT,
   CLOSED,
   ERROR,
+  WAITING,
 }
 
 const SocketContext =

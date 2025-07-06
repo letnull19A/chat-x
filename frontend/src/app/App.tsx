@@ -9,6 +9,7 @@ import {
   ConnectionStatus,
 } from '@contexts'
 import { io, Socket } from 'socket.io-client'
+import './../themes/default/main.css'
 
 function App() {
   const socketRef = useRef<Socket>(null)
@@ -30,11 +31,15 @@ function App() {
 
     if (socketRef.current === undefined) return
 
-    socketRef.current?.on('connect', () => {
+    socketRef.current?.on('connection', (err) => {
+      setStatus(ConnectionStatus.WAITING)
+    })
+
+    socketRef.current?.on('connect', (err) => {
       setStatus(ConnectionStatus.CONNECTED)
     })
 
-    socketRef.current?.on('error', () => {
+    socketRef.current?.on('connect_error', () => {
       setStatus(ConnectionStatus.ERROR)
     })
 
