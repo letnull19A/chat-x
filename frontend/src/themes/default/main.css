@@ -1,0 +1,7 @@
+.theme-default {
+  --primary-color: #fff;
+  --foreign-color: #ffffcc;
+
+  --header-bc: var(--primary-color);
+  --header-sh: #000000;
+}

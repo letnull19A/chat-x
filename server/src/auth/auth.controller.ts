@@ -10,6 +10,7 @@ import {
 import { AuthService } from './auth.service'
 import { Public } from './decorators/public.decorator'
 import { LoginDto } from './dto/login.dto'
+import { TokenPairDto } from './../auth/dto/tokens.dto'
 
 @Controller('auth')
 export class AuthController {
@@ -18,17 +19,20 @@ export class AuthController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() loginDto: LoginDto) {
-    return this.authService.signIn(
-      loginDto.login,
-      loginDto.password,
-    )
+  async signIn(@Body() loginDto: LoginDto) {
+    return this.authService.signIn({
+      login: loginDto.login,
+      password: loginDto.password,
+    })
   }
 
   @Get('profile')
-  getProfile(@Request() req) {
+  async getProfile(@Request() req) {
     return req.user
   }
 
-  refresh() {}
+  @Post('refresh')
+  async refresh(@Request() tokens: TokenPairDto) {
+    return null
+  }
 }

@@ -5,7 +5,9 @@ import SocketContext, {
 import BurgerContext, {
   type TBurgerContext,
 } from './burger.context'
-import ThemeContext, {TThemeContext} from './theme.context'
+import ThemeContext, {
+  TThemeContext,
+} from './theme.context'
 
 export {
   SocketContext,
@@ -14,5 +16,5 @@ export {
   TBurgerContext,
   BurgerContext,
   TThemeContext,
-  ThemeContext
+  ThemeContext,
 }

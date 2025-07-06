@@ -1,4 +1,7 @@
-import { Module } from '@nestjs/common'
+import {
+  Module,
+  LoggerService,
+} from '@nestjs/common'
 import { APP_GUARD } from '@nestjs/core'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule } from '@nestjs/config'
@@ -19,6 +22,7 @@ import { jwtConstants } from './constants'
         expiresIn: process.env.AUTH_ACCESS_LIFE,
       },
     }),
+    LoggerService,
   ],
   providers: [
     AuthService,

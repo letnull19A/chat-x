@@ -1,5 +1,9 @@
 import { useNavigate } from 'react-router-dom'
-import { useContext, useState, useEffect } from 'react'
+import {
+  useContext,
+  useState,
+  useEffect,
+} from 'react'
 import {
   SocketContext,
   ConnectionStatus,
@@ -14,20 +18,20 @@ import './style.css'
 const StatusBar = () => {
   const socket = useContext(SocketContext)
 
-  const [className, setClassName] = 
-	  useState<string>('status-wait')
+  const [className, setClassName] =
+    useState<string>('status-wait')
 
   useEffect(() => {
     switch (socket.status) {
       case ConnectionStatus.CONNECTED:
-	setClassName('status-connected');
-        break;
+        setClassName('status-connected')
+        break
       case ConnectionStatus.WAITING:
-	setClassName('status-wait');
-        break;
+        setClassName('status-wait')
+        break
       case ConnectionStatus.ERROR:
-	setClassName('status-error');
-        break;
+        setClassName('status-error')
+        break
     }
   }, [socket.status])
 
