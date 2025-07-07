@@ -9,7 +9,12 @@ import {
   ConnectionStatus,
 } from '@contexts'
 import { io, Socket } from 'socket.io-client'
+import {ThemeWrapper} from '@layouts'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import './../themes/default/main.css'
+
+library.add(fas)
 
 function App() {
   const socketRef = useRef<Socket>(null)
@@ -50,7 +55,9 @@ function App() {
 
   return (
     <SocketContext.Provider value={data}>
+     <ThemeWrapper>  
       <RouterApp />
+     </ThemeWrapper>
     </SocketContext.Provider>
   )
 }

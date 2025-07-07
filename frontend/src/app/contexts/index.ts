@@ -6,7 +6,7 @@ import BurgerContext, {
   type TBurgerContext,
 } from './burger.context'
 import ThemeContext, {
-  TThemeContext,
+  type TThemeContext,
 } from './theme.context'
 
 export {

@@ -10,6 +10,7 @@ import {
   BurgerContext,
 } from '@contexts'
 import { Button } from '@ui'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
 /**
@@ -56,11 +57,10 @@ const Header = () => {
 
   return (
     <header>
-      <Button
-        label='menu'
-        button={menuAttributes}
-      />
-      <span onClick={() => navigate('/')}>
+      <button {...menuAttributes} className='burger-button'>
+       <FontAwesomeIcon icon="fa-solid fa-bars" />
+      </button>
+      <span className='logo'  onClick={() => navigate('/')}>
         chat-x
       </span>
       <StatusBar />

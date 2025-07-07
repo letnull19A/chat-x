@@ -2,14 +2,15 @@ import { createContext } from 'react'
 
 export type TThemeContext = {
   theme: string
-  setTheme: (theme: string) => null
+  setTheme: (value: string) => null
 }
 
-const ThemeContext = createContext<TThemeContext>(
-  {
+const themeContext = {
     theme: 'default',
-    setTheme: () => null,
-  },
-)
+    setTheme: (value: string) => null,
+}
+
+const ThemeContext = 
+	createContext<TThemeContext>(themeContext)
 
 export default ThemeContext
