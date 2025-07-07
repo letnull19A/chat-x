@@ -57,10 +57,16 @@ const Header = () => {
 
   return (
     <header>
-      <button {...menuAttributes} className='burger-button'>
-       <FontAwesomeIcon icon="fa-solid fa-bars" />
+      <button
+        {...menuAttributes}
+        className='burger-button'
+      >
+        <FontAwesomeIcon icon='fa-solid fa-bars' />
       </button>
-      <span className='logo'  onClick={() => navigate('/')}>
+      <span
+        className='logo'
+        onClick={() => navigate('/')}
+      >
         chat-x
       </span>
       <StatusBar />

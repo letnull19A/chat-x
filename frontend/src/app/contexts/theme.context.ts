@@ -6,11 +6,11 @@ export type TThemeContext = {
 }
 
 const themeContext = {
-    theme: 'default',
-    setTheme: (value: string) => null,
+  theme: 'default',
+  setTheme: (value: string) => null,
 }
 
-const ThemeContext = 
-	createContext<TThemeContext>(themeContext)
+const ThemeContext =
+  createContext<TThemeContext>(themeContext)
 
 export default ThemeContext
