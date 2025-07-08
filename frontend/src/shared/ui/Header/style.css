@@ -19,6 +19,7 @@ header {
   border: none;
   background-color: transparent;
   font-size: 21px;
+  cursor: pointer;
 }
 
 .logo {

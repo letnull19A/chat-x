@@ -5,7 +5,7 @@ import {
   type TBurgerContext,
 } from '@contexts'
 import data from './menu-items.json'
-import { Button } from '@ui'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
 type TBurgerMenuItemProps = {
@@ -18,13 +18,12 @@ const BurgerMenuItem = (
 ) => {
   const navigate = useNavigate()
   const { title, path } = props
-  const burgerMenuContext = useContext(
-    BurgerContext,
-  )
+  const burgerMenuContext =
+    useContext<TBurgerContext>(BurgerContext)
 
   const onHandleClick = () => {
-    navigate(path),
-      burgerMenuContext.setIsOpen(false)
+    navigate(path)
+    burgerMenuContext.setIsOpen(false)
   }
 
   return (
@@ -40,23 +39,28 @@ const BurgerMenuItem = (
 const BurgerMenu = () => {
   const menuItems =
     data as Array<TBurgerMenuItemProps>
-  const context = useContext(BurgerContext)
+  const burgerContext =
+    useContext<TBurgerContext>(BurgerContext)
 
-  const buttonAttributes = {
-    className: 'menu-button',
+  const menuAttributes = {
     onClick: () => {
-      if (!context) return
+      if (!burgerContext) return
 
-      context.setIsOpen(!context.isOpen)
+      burgerContext.setIsOpen(
+        !burgerContext.isOpen,
+      )
     },
+    className: 'burger-button',
   }
 
-  return context.isOpen ? (
+  return burgerContext.isOpen ? (
     <div className='burger-menu'>
-      <Button
-        label='menu'
-        button={buttonAttributes}
-      />
+      <button
+        {...menuAttributes}
+        className='burger-button_close'
+      >
+        <FontAwesomeIcon icon='fa-solid fa-xmark' />
+      </button>
       <ul className='burger-menu__container'>
         {menuItems.map((item, id) => (
           <BurgerMenuItem {...item} key={id} />

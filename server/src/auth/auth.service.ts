@@ -1,5 +1,4 @@
 import {
-  LoggerService,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common'
@@ -7,6 +6,7 @@ import { UserService } from './../user/user.service'
 import { JwtService } from '@nestjs/jwt'
 import { TokenPairDto } from './dto/tokens.dto'
 import { LoginDto } from './dto/login.dto'
+import { Logger } from 'nestjs-pino'
 import {
   createHash,
   randomInt,
@@ -17,7 +17,7 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    private readonly logger: LoggerService,
+    private readonly logger: Logger,
   ) {}
 
   async signIn(

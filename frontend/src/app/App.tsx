@@ -17,7 +17,7 @@ import './../themes/default/main.css'
 library.add(fas)
 
 function App() {
-  const socketRef = useRef<Socket>(null)
+  const socketRef = useRef<Socket>()
   const [status, setStatus] =
     useState<ConnectionStatus>(
       ConnectionStatus.CLOSED,
@@ -36,11 +36,11 @@ function App() {
 
     if (socketRef.current === undefined) return
 
-    socketRef.current?.on('connection', (err) => {
+    socketRef.current?.on('connection', () => {
       setStatus(ConnectionStatus.WAITING)
     })
 
-    socketRef.current?.on('connect', (err) => {
+    socketRef.current?.on('connect', () => {
       setStatus(ConnectionStatus.CONNECTED)
     })
 
