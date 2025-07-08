@@ -21,7 +21,7 @@ export default defineConfig({
       '@layouts': path.resolve(__dirname, './src/app/layouts'),
       '@routes': path.resolve(__dirname, './src/app/routes'),
       '@redux/store': path.resolve(__dirname, './src/app/redux/stores'),
-      '@contexts': path.resolve(__dirname, './src/app/contexts')
+      '@contexts': path.resolve(__dirname, './src/app/contexts'),
     },
   },
   plugins: [react()],

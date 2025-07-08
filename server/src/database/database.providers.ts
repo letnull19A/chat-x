@@ -6,11 +6,11 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'postgres',
-        host: 'localhost',
+        host: '0.0.0.0',
         port: 5432,
         username: 'postgres',
-        password: '',
-        database: 'chatx',
+        password: 'fUck_U_n1ggErs_@ss',
+        database: 'chatxdb',
         entities: [
           __dirname + '/../**/*.entity{.ts,.js}',
         ],

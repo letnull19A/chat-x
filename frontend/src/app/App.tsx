@@ -9,9 +9,15 @@ import {
   ConnectionStatus,
 } from '@contexts'
 import { io, Socket } from 'socket.io-client'
+import { ThemeWrapper } from '@layouts'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import './../themes/default/main.css'
+
+library.add(fas)
 
 function App() {
-  const socketRef = useRef<Socket>(null)
+  const socketRef = useRef<Socket>()
   const [status, setStatus] =
     useState<ConnectionStatus>(
       ConnectionStatus.CLOSED,
@@ -30,11 +36,15 @@ function App() {
 
     if (socketRef.current === undefined) return
 
+    socketRef.current?.on('connection', () => {
+      setStatus(ConnectionStatus.WAITING)
+    })
+
     socketRef.current?.on('connect', () => {
       setStatus(ConnectionStatus.CONNECTED)
     })
 
-    socketRef.current?.on('error', () => {
+    socketRef.current?.on('connect_error', () => {
       setStatus(ConnectionStatus.ERROR)
     })
 
@@ -45,7 +55,9 @@ function App() {
 
   return (
     <SocketContext.Provider value={data}>
-      <RouterApp />
+      <ThemeWrapper>
+        <RouterApp />
+      </ThemeWrapper>
     </SocketContext.Provider>
   )
 }

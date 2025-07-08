@@ -5,6 +5,7 @@ import {
   type TBurgerContext,
 } from '@contexts'
 import data from './menu-items.json'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
 type TBurgerMenuItemProps = {
@@ -17,11 +18,18 @@ const BurgerMenuItem = (
 ) => {
   const navigate = useNavigate()
   const { title, path } = props
+  const burgerMenuContext =
+    useContext<TBurgerContext>(BurgerContext)
+
+  const onHandleClick = () => {
+    navigate(path)
+    burgerMenuContext.setIsOpen(false)
+  }
 
   return (
     <li
       className='burger-menu__item'
-      onClick={() => navigate(path)}
+      onClick={onHandleClick}
     >
       {title}
     </li>
@@ -31,17 +39,35 @@ const BurgerMenuItem = (
 const BurgerMenu = () => {
   const menuItems =
     data as Array<TBurgerMenuItemProps>
-  const context = useContext(BurgerContext)
+  const burgerContext =
+    useContext<TBurgerContext>(BurgerContext)
 
-  return (
+  const menuAttributes = {
+    onClick: () => {
+      if (!burgerContext) return
+
+      burgerContext.setIsOpen(
+        !burgerContext.isOpen,
+      )
+    },
+    className: 'burger-button',
+  }
+
+  return burgerContext.isOpen ? (
     <div className='burger-menu'>
-      <ul>
+      <button
+        {...menuAttributes}
+        className='burger-button_close'
+      >
+        <FontAwesomeIcon icon='fa-solid fa-xmark' />
+      </button>
+      <ul className='burger-menu__container'>
         {menuItems.map((item, id) => (
           <BurgerMenuItem {...item} key={id} />
         ))}
       </ul>
     </div>
-  )
+  ) : null
 }
 
 export default BurgerMenu

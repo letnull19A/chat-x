@@ -1,34 +1,75 @@
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import {
+  useContext,
+  useState,
+  useEffect,
+} from 'react'
 import {
   SocketContext,
   ConnectionStatus,
+  BurgerContext,
 } from '@contexts'
-import { Container } from '@ui'
+import { Button } from '@ui'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
+/**
+ * TODO: move this in separate component: Statusbar
+ * */
 const StatusBar = () => {
   const socket = useContext(SocketContext)
 
-  return socket.status ===
-    ConnectionStatus.CONNECTED ? (
-    <i>connected</i>
-  ) : (
-    <i>waiting...</i>
-  )
+  const [className, setClassName] =
+    useState<string>('status-wait')
+
+  useEffect(() => {
+    switch (socket.status) {
+      case ConnectionStatus.CONNECTED:
+        setClassName('status-connected')
+        break
+      case ConnectionStatus.WAITING:
+        setClassName('status-wait')
+        break
+      case ConnectionStatus.ERROR:
+        setClassName('status-error')
+        break
+    }
+  }, [socket.status])
+
+  return <div className={className}></div>
 }
 
 const Header = () => {
   const navigate = useNavigate()
 
+  const burgerContext = useContext(BurgerContext)
+
+  const menuAttributes = {
+    onClick: () => {
+      if (!burgerContext) return
+
+      burgerContext.setIsOpen(
+        !burgerContext.isOpen,
+      )
+    },
+    className: 'burger-button',
+  }
+
   return (
     <header>
-      <Container>
-        <span onClick={() => navigate('/')}>
-          chat-x
-        </span>
-        <StatusBar />
-      </Container>
+      <button
+        {...menuAttributes}
+        className='burger-button'
+      >
+        <FontAwesomeIcon icon='fa-solid fa-bars' />
+      </button>
+      <span
+        className='logo'
+        onClick={() => navigate('/')}
+      >
+        chat-x
+      </span>
+      <StatusBar />
     </header>
   )
 }
