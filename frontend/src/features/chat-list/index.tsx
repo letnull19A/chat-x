@@ -24,7 +24,9 @@ const ChatList = () => {
             <span className='chat-list__item-title'>
               {item.name}
             </span>
-            <span className='chat-list__item-isers'>{item.users}</span>
+            <span className='chat-list__item-isers'>
+              {item.users}
+            </span>
           </div>
         </li>
       ))}

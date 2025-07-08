@@ -22,9 +22,7 @@ const ChatViewFeature = () => {
       <div className='chat-view-feature__header'>
         {chatData?.name}
       </div>
-      <div className="chat-view-feature__main">
-        
-      </div>
+      <div className='chat-view-feature__main'></div>
       <div className='chat-view-feature__form'>
         <form>
           <textarea placeholder='type message here'></textarea>

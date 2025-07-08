@@ -24,8 +24,8 @@ const ChatApi = {
     return data
   },
   getById: (id: number) => {
-    return data.find(t => t.id === id)
-  }
+    return data.find((t) => t.id === id)
+  },
 }
 
 export default ChatApi

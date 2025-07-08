@@ -5,9 +5,7 @@ import {
   Main,
   CreateChat,
 } from '@pages'
-import {
-  Default,
-} from '@layouts'
+import { Default } from '@layouts'
 
 export const publicRouter: Array<RouteObject> = [
   {

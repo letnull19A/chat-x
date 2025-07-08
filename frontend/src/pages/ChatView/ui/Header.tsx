@@ -31,7 +31,9 @@ const Header = () => {
       </button>
       <div className={style.chatInfo}>
         <span>{chatData.name}</span>
-        <span>{chatData.online} members active</span>
+        <span>
+          {chatData.online} members active
+        </span>
       </div>
     </div>
   )

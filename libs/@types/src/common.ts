@@ -1,13 +1,13 @@
 type TCommon = {
- id: string
+  id: string
 }
 
 export type TUser = {
- nickname: string
- password: string
- login: string
+  nickname: string
+  password: string
+  login: string
 } & TCommon
 
 export type TChat = {
- title: string
+  title: string
 } & TCommon

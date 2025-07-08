@@ -8,7 +8,7 @@ import { defaultChatRouter } from './chat'
 export const RouterApp = () => {
   const router = createBrowserRouter([
     ...publicRouter,
-    ...defaultChatRouter
+    ...defaultChatRouter,
   ])
 
   return (
