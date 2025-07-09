@@ -1,21 +1,15 @@
-import {
-  Test,
-  TestingModule,
-} from '@nestjs/testing'
+import { Test, TestingModule } from '@nestjs/testing'
 import { GroupsController } from './groups.controller'
 
 describe('GroupsController', () => {
   let controller: GroupsController
 
   beforeEach(async () => {
-    const module: TestingModule =
-      await Test.createTestingModule({
-        controllers: [GroupsController],
-      }).compile()
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [GroupsController],
+    }).compile()
 
-    controller = module.get<GroupsController>(
-      GroupsController,
-    )
+    controller = module.get<GroupsController>(GroupsController)
   })
 
   it('should be defined', () => {

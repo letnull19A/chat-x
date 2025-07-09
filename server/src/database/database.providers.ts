@@ -11,9 +11,7 @@ export const databaseProviders = [
         username: 'postgres',
         password: 'fUck_U_n1ggErs_@ss',
         database: 'chatxdb',
-        entities: [
-          __dirname + '/../**/*.entity{.ts,.js}',
-        ],
+        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
       })
 

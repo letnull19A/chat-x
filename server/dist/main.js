@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app/app.module");
 const swagger_1 = require("@nestjs/swagger");
+const zod_nestjs_1 = require("@anatine/zod-nestjs");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
+    app.useGlobalPipes(new zod_nestjs_1.ZodValidationPipe());
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Chat-X Docs')
         .setDescription('chat-x documentation')

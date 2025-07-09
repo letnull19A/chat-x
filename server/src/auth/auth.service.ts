@@ -1,16 +1,10 @@
-import {
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { UserService } from './../user/user.service'
 import { JwtService } from '@nestjs/jwt'
 import { TokenPairDto } from './dto/tokens.dto'
 import { LoginDto } from './dto/login.dto'
 import { Logger } from 'nestjs-pino'
-import {
-  createHash,
-  randomInt,
-} from 'node:crypto'
+import { createHash } from 'node:crypto'
 
 @Injectable()
 export class AuthService {
@@ -20,23 +14,17 @@ export class AuthService {
     private readonly logger: Logger,
   ) {}
 
-  async signIn(
-    loginData: LoginDto,
-  ): Promise<any> {
+  async signIn(loginData: LoginDto): Promise<any> {
     const { login, password } = loginData
 
-    const user =
-      await this.userService.findByLogin(login)
+    const user = await this.userService.findByLogin(login)
 
-    const passwordHash = createHash('sha-256')
-      .update(password)
-      .digest('base64')
+    const passwordHash = createHash('sha-256').update(password).digest('base64')
 
     if (user?.password !== passwordHash) {
       throw new UnauthorizedException()
     }
 
-    const { ...result } = user
     const payload = {
       sub: user.id,
       nickname: user.nickname,
@@ -53,25 +41,14 @@ export class AuthService {
     }
 
     return {
-      access_token:
-        await this.jwtService.signAsync(
-          payload,
-          accessOptions,
-        ),
-      refresh_token:
-        await this.jwtService.signAsync(
-          payload,
-          refreshOptions,
-        ),
+      access_token: await this.jwtService.signAsync(payload, accessOptions),
+      refresh_token: await this.jwtService.signAsync(payload, refreshOptions),
     }
   }
 
   async refreshAllTokens(tokens: TokenPairDto) {
     try {
-      const user =
-        await this.jwtService.verifyAsync(
-          tokens.refreshToken,
-        )
+      const user = await this.jwtService.verifyAsync(tokens.refresh)
 
       const payload = {
         sub: null,
@@ -89,16 +66,8 @@ export class AuthService {
       }
 
       return {
-        access_token:
-          await this.jwtService.signAsync(
-            payload,
-            accessOptions,
-          ),
-        refresh_token:
-          await this.jwtService.signAsync(
-            payload,
-            refreshOptions,
-          ),
+        access_token: await this.jwtService.signAsync(payload, accessOptions),
+        refresh_token: await this.jwtService.signAsync(payload, refreshOptions),
       }
     } catch {
       this.logger.error('token are not verified!')
