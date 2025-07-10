@@ -1,4 +1,4 @@
-import { Session } from 'src/auth/session.entity'
+import { Session } from './../auth/session.entity'
 import {
   Entity,
   Column,

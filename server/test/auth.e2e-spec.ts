@@ -24,16 +24,13 @@ describe('AuthController (e2e)', () => {
     }
 
     const response = await request(app.getHttpServer())
-      .post('/user/regist')
+      .post('/auth/login')
       .send(data)
 
     const messages: Array<string> = response.body.message
 
     expect(response.status).toBe(400)
     expect(messages).toContain('login: login field is empty')
-    expect(messages).toContain(
-      'login: login field should be longest 5 characters',
-    )
   })
 
   it('[validation] login is not exist', async () => {
@@ -42,16 +39,13 @@ describe('AuthController (e2e)', () => {
     }
 
     const response = await request(app.getHttpServer())
-      .post('/user/regist')
+      .post('/auth/login')
       .send(data)
 
     const messages: Array<string> = response.body.message
 
     expect(response.status).toBe(400)
-    expect(messages).toContain('login: login field is empty')
-    expect(messages).toContain(
-      'login: login field should be longest 5 characters',
-    )
+    expect(messages).toContain('login: Required')
   })
 
   it('[validation] password is empty', async () => {
@@ -61,16 +55,13 @@ describe('AuthController (e2e)', () => {
     }
 
     const response = await request(app.getHttpServer())
-      .post('/user/regist')
+      .post('/auth/login')
       .send(data)
 
     const messages: Array<string> = response.body.message
 
     expect(response.status).toBe(400)
-    expect(messages).toContain('login: login field is empty')
-    expect(messages).toContain(
-      'login: login field should be longest 5 characters',
-    )
+    expect(messages).toContain('password: password field is empty')
   })
 
   it('[validation] password is not exist', async () => {
@@ -79,15 +70,12 @@ describe('AuthController (e2e)', () => {
     }
 
     const response = await request(app.getHttpServer())
-      .post('/user/regist')
+      .post('/auth/login')
       .send(data)
 
     const messages: Array<string> = response.body.message
 
     expect(response.status).toBe(400)
-    expect(messages).toContain('login: login field is empty')
-    expect(messages).toContain(
-      'login: login field should be longest 5 characters',
-    )
+    expect(messages).toContain('password: Required')
   })
 })

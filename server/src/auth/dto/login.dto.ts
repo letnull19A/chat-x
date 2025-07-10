@@ -1,5 +1,5 @@
 import { extendApi } from '@anatine/zod-openapi'
-import { createZodDto } from 'nestjs-zod'
+import { createZodDto } from '@anatine/zod-nestjs'
 import z from 'zod'
 
 export const LoginSchema = extendApi(

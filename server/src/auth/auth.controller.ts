@@ -3,30 +3,28 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   Post,
   Request,
 } from '@nestjs/common'
-import { AuthService } from './auth.service'
+import { AuthResponse, AuthService } from './auth.service'
 import { Public } from './decorators/public.decorator'
 import { LoginDto } from './dto/login.dto'
 import { TokenPairDto } from './../auth/dto/tokens.dto'
-import { ApiParam } from '@nestjs/swagger'
+import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger'
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @HttpCode(HttpStatus.OK)
   @Post('login')
   @Public()
-  async signIn(@Body() loginDto: LoginDto) {
-    return await this.authService.signIn({
-      login: loginDto.login,
-      password: loginDto.password,
-    })
+  @ApiBody({ type: LoginDto })
+  @ApiResponse({
+    status: 400,
+  })
+  async signIn(@Body() loginDto: LoginDto): Promise<AuthResponse> {
+    return await this.authService.signIn(loginDto)
   }
 
   @Get('sessions/:userId')
