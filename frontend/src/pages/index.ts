@@ -5,11 +5,4 @@ import Registration from './Registration'
 import Main from './Main'
 import CreateChat from './CreateChat'
 
-export {
-  ChatView,
-  ChatList,
-  Login,
-  Registration,
-  Main,
-  CreateChat,
-}
+export { ChatView, ChatList, Login, Registration, Main, CreateChat }

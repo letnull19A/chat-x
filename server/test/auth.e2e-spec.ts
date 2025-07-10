@@ -38,7 +38,6 @@ describe('AuthController (e2e)', () => {
 
   it('[validation] login is not exist', async () => {
     const data = {
-      login: '',
       password: '',
     }
 
@@ -77,7 +76,6 @@ describe('AuthController (e2e)', () => {
   it('[validation] password is not exist', async () => {
     const data = {
       login: '',
-      password: '',
     }
 
     const response = await request(app.getHttpServer())

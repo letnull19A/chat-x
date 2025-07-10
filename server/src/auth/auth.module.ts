@@ -6,9 +6,12 @@ import { UserModule } from './../user/user.module'
 import { AuthController } from './auth.controller'
 import { AuthGuard } from './auth.guard'
 import { AuthService } from './auth.service'
+import { sessionProviders } from './auth.providers'
+import { DatabaseModule } from './../database/database.module'
 
 @Module({
   imports: [
+    DatabaseModule,
     ConfigModule,
     UserModule,
     JwtModule.register({
@@ -20,6 +23,7 @@ import { AuthService } from './auth.service'
     }),
   ],
   providers: [
+    ...sessionProviders,
     AuthService,
     {
       provide: APP_GUARD,

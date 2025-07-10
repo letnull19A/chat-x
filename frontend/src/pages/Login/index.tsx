@@ -8,12 +8,7 @@ type TLoginForm = {
 }
 
 const Login = () => {
-  const {
-    handleSubmit,
-    register,
-    formState,
-    reset,
-  } = useForm<LoginForm>()
+  const { handleSubmit, register, formState, reset } = useForm<LoginForm>()
 
   const onFormSubmit = (data: TLoginForm) => {
     console.log(data)
@@ -25,14 +20,8 @@ const Login = () => {
     <>
       <h1>Login page</h1>
       <form onSubmit={handleSubmit(onFormSubmit)}>
-        <Inputfield
-          input={{ ...register('login') }}
-          title='Your login'
-        />
-        <Inputfield
-          input={{ ...register('password') }}
-          title='Your password'
-        />
+        <Inputfield input={{ ...register('login') }} title='Your login' />
+        <Inputfield input={{ ...register('password') }} title='Your password' />
         <Button label='Login now!' />
       </form>
       <Link to='/reg' label='Regist new' />

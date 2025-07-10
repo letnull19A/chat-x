@@ -1,13 +1,6 @@
 import { RouteObject } from 'react-router-dom'
-import {
-  Login,
-  Registration,
-  Main,
-  CreateChat,
-} from '@pages'
-import {
-  Default,
-} from '@layouts'
+import { Login, Registration, Main, CreateChat } from '@pages'
+import { Default } from '@layouts'
 
 export const publicRouter: Array<RouteObject> = [
   {

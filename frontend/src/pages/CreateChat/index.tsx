@@ -10,10 +10,7 @@ const CreateChat = () => {
           message='chat name should be not empty!'
         />
         <Button label='Create new chat!' />
-        <Link
-          label='Go to chat list'
-          to='/chat-list'
-        />
+        <Link label='Go to chat list' to='/chat-list' />
       </form>
     </>
   )

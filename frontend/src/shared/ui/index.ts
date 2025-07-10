@@ -5,11 +5,4 @@ import Button from './Button'
 import Link from './Link'
 import BurgerMenu from './BurgerMenu'
 
-export {
-  Header,
-  Container,
-  Inputfield,
-  Button,
-  Link,
-  BurgerMenu,
-}
+export { Header, Container, Inputfield, Button, Link, BurgerMenu }

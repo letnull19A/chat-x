@@ -1,13 +1,6 @@
-import {
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { RouterApp } from '@routes'
-import {
-  SocketContext,
-  ConnectionStatus,
-} from '@contexts'
+import { SocketContext, ConnectionStatus } from '@contexts'
 import { io, Socket } from 'socket.io-client'
 import { ThemeWrapper } from '@layouts'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -18,10 +11,9 @@ library.add(fas)
 
 function App() {
   const socketRef = useRef<Socket>()
-  const [status, setStatus] =
-    useState<ConnectionStatus>(
-      ConnectionStatus.CLOSED,
-    )
+  const [status, setStatus] = useState<ConnectionStatus>(
+    ConnectionStatus.CLOSED,
+  )
 
   const data = {
     socket: null,
@@ -30,9 +22,7 @@ function App() {
   }
 
   useLayoutEffect(() => {
-    socketRef.current = io(
-      import.meta.env.VITE_CHAT_DOMAIN,
-    )
+    socketRef.current = io(import.meta.env.VITE_CHAT_DOMAIN)
 
     if (socketRef.current === undefined) return
 

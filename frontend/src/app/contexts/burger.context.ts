@@ -10,7 +10,6 @@ const burgerContext = {
   setIsOpen: (value: boolean) => null,
 }
 
-const BurgerContext =
-  createContext<TBurgerContext>(burgerContext)
+const BurgerContext = createContext<TBurgerContext>(burgerContext)
 
 export default BurgerContext
