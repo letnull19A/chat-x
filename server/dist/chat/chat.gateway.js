@@ -18,7 +18,7 @@ let ChatGateway = class ChatGateway {
         this.logger = logger;
     }
     afterInit(server) {
-        this.logger.log('initialized!');
+        this.logger.log('successfully initialized!');
     }
     handleMessage(client, payload) {
         return 'Hello world!';

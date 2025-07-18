@@ -1,9 +1,12 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { extendApi } from '@anatine/zod-openapi'
+import { createZodDto } from '@anatine/zod-nestjs'
+import z from 'zod'
 
-export class LoginDto {
-  @ApiProperty()
-  password: string
+export const LoginSchema = extendApi(
+  z.object({
+    login: z.string().nonempty({ message: 'login field is empty' }),
+    password: z.string().nonempty({ message: 'password field is empty' }),
+  }),
+)
 
-  @ApiProperty()
-  login: string
-}
+export class LoginDto extends createZodDto(LoginSchema) {}

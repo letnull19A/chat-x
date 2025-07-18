@@ -1,15 +1,15 @@
+import { Session } from './../auth/session.entity'
 import {
-  Generated,
   Entity,
   Column,
   PrimaryGeneratedColumn,
   BaseEntity,
+  OneToMany,
 } from 'typeorm'
 
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  @Generated('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()
@@ -20,4 +20,7 @@ export class User extends BaseEntity {
 
   @Column({ default: '' })
   nickname: string
+
+  @OneToMany(() => Session, (session) => session.user)
+  sessions: Array<Session>
 }

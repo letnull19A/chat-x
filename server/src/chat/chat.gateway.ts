@@ -15,32 +15,22 @@ import { Logger } from 'nestjs-pino'
   },
 })
 export class ChatGateway
-  implements
-    OnGatewayInit,
-    OnGatewayConnection,
-    OnGatewayDisconnect
+  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
   constructor(private logger: Logger) {}
 
   @WebSocketServer() server: Server
-
   afterInit(server: Server) {
-    this.logger.log('initialized!')
+    this.logger.log('successfully initialized!')
   }
 
   @SubscribeMessage('message')
-  handleMessage(
-    client: Socket,
-    payload: any,
-  ): string {
+  handleMessage(client: Socket, payload: any): string {
     return 'Hello world!'
   }
 
   @SubscribeMessage('join')
-  handleJoinChat(
-    client: Socket,
-    payload: any,
-  ): string {
+  handleJoinChat(client: Socket, payload: any): string {
     return 'joined in chat'
   }
 

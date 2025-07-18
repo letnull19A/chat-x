@@ -5,24 +5,18 @@ import {
   Post,
   Controller,
   Get,
-  Put,
   Delete,
   Param,
 } from '@nestjs/common'
 import { UserService } from './user.service'
-import { CreateUserDto } from './dto/create-user.dto'
+import { RegistrationDto } from './dto/registration.dto'
 import { User } from './user.entity'
-import {
-  createHash,
-  randomInt,
-} from 'node:crypto'
 import { Public } from './../auth/decorators/public.decorator'
+import { ApiBody, ApiResponse } from '@nestjs/swagger'
 
 @Controller('user')
 export class UserController {
-  constructor(
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
   @Get(':id')
   @Public()
@@ -47,47 +41,19 @@ export class UserController {
     return result
   }
 
-  @Post()
+  @Post('regist')
   @Public()
-  async create(
-    @Body() body: CreateUserDto,
-  ): Promise<User> {
-    const user = new User()
-
-    const {
-      password,
-      passwordConfirm,
-      login,
-      nickname,
-    } = body
-
-    if (password !== passwordConfirm)
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          message: 'passwords not equals',
-        },
-        HttpStatus.BAD_REQUEST,
-      )
-
-    const passwordHash = createHash('sha-256')
-      .update(password)
-      .digest('base64')
-
-    user.login = login
-    user.password = passwordHash
-    user.nickname = nickname
-
-    await user.save()
-
-    return user
+  @ApiBody({ type: RegistrationDto })
+  @ApiResponse({
+    status: 400,
+  })
+  async regist(@Body() body: RegistrationDto): Promise<User> {
+    return await this.userService.create(body)
   }
 
   @Delete(':id')
   @Public()
-  async deleteById(
-    @Param('id') id: string,
-  ): Promise<string> {
+  async deleteById(@Param('id') id: string): Promise<string> {
     this.userService.deleteById(id)
 
     return 'success!'

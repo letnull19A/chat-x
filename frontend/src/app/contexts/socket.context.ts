@@ -15,11 +15,10 @@ export enum ConnectionStatus {
   WAITING,
 }
 
-const SocketContext =
-  createContext<TSocketContext>({
-    status: ConnectionStatus.CLOSED,
-    socket: null,
-    setStatus: () => null,
-  })
+const SocketContext = createContext<TSocketContext>({
+  status: ConnectionStatus.CLOSED,
+  socket: null,
+  setStatus: () => null,
+})
 
 export default SocketContext
