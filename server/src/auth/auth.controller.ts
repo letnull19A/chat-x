@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Post,
   Request,
@@ -10,7 +11,6 @@ import {
 import { AuthResponse, AuthService } from './auth.service'
 import { Public } from './decorators/public.decorator'
 import { LoginDto } from './dto/login.dto'
-import { TokenPairDto } from './../auth/dto/tokens.dto'
 import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger'
 
 @Controller('auth')
@@ -23,6 +23,7 @@ export class AuthController {
   @ApiResponse({
     status: 400,
   })
+  @HttpCode(200)
   async signIn(@Body() loginDto: LoginDto): Promise<AuthResponse> {
     return await this.authService.signIn(loginDto)
   }
@@ -71,10 +72,5 @@ export class AuthController {
   @Get('profile')
   async getProfile(@Request() req) {
     return req.user
-  }
-
-  @Post('refresh')
-  async refresh(@Request() tokens: TokenPairDto) {
-    return null
   }
 }

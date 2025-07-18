@@ -2,11 +2,11 @@ import {
   BadRequestException,
   Inject,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common'
 import { UserService } from './../user/user.service'
 import { JwtService } from '@nestjs/jwt'
-import { TokenPairDto } from './dto/tokens.dto'
 import { LoginDto } from './dto/login.dto'
 import { Logger } from 'nestjs-pino'
 import { createHash } from 'node:crypto'
@@ -16,6 +16,7 @@ import { Repository } from 'typeorm'
 
 export interface AuthResponse {
   session_id: string
+  user_id: string
   access_token: string
   refresh_token: string
 }
@@ -40,6 +41,7 @@ export class AuthService {
 
     await this.validateUserCredentials(login, password)
     const user = await this.userService.findByLogin(login)
+
     await this.checkSessionsLimit(user)
 
     const tokens = await this.generateTokens(user)
@@ -55,9 +57,11 @@ export class AuthService {
     const user = await this.userService.findByLogin(login)
     const passwordHash = this.hashPassword(password)
 
-    if (!user || user.password !== passwordHash) {
+    if (user === null || user === undefined)
+      throw new NotFoundException('user not found')
+
+    if (!user || user.password !== passwordHash)
       throw new UnauthorizedException('Invalid credentials')
-    }
   }
 
   private hashPassword(password: string): string {
@@ -116,6 +120,7 @@ export class AuthService {
   ): AuthResponse {
     return {
       session_id: session.id,
+      user_id: session.userId,
       access_token: tokens.accessToken,
       refresh_token: tokens.refreshToken,
     }
