@@ -1,37 +1,25 @@
-import { Header } from '@ui'
-import { ChatApi } from '@api'
+import { ChatList as ChatListFeature } from '@features'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import './style.css'
 
 const ChatList = () => {
-  const data = ChatApi.getAll()
-
   const navigate = useNavigate()
+
+  const floatButtonProps = {
+    onClick: () => navigate('/chat-create'),
+    className: 'add-chat',
+  }
 
   return (
     <>
-      <Header />
       <div className='chat-list'>
-        <ul className='chat-list__view'>
-          {data.map((item) => (
-            <li
-              className='chat-list__item'
-              onClick={() =>
-                navigate(`/chat/${item.id}`)
-              }
-            >
-              <img
-                src=''
-                className='chat-list__item-image'
-              />
-              <div className='chat-list__item-info'>
-                <span className='chat-list__item-title'>
-                  {item.name}
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <ChatListFeature />
+      </div>
+      <div className='newchat-button'>
+        <button {...floatButtonProps}>
+          <FontAwesomeIcon icon='fa-solid fa-plus' />
+        </button>
       </div>
     </>
   )

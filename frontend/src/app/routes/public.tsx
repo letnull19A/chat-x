@@ -1,25 +1,11 @@
 import { RouteObject } from 'react-router-dom'
-import {
-  ChatView,
-  ChatList,
-  Login,
-  Registration,
-  Main,
-} from '@pages'
+import { Login, Registration, Main, CreateChat } from '@pages'
 import { Default } from '@layouts'
 
-export const publicRouter: RouteObject[] = [
-  {
-    path: '/chat/:id',
-    element: <ChatView />,
-  },
+export const publicRouter: Array<RouteObject> = [
   {
     path: '/account',
     element: <Default>account</Default>,
-  },
-  {
-    path: '/chat-list',
-    element: <ChatList />,
   },
   {
     path: '/login',
@@ -42,6 +28,14 @@ export const publicRouter: RouteObject[] = [
     element: (
       <Default>
         <Main />
+      </Default>
+    ),
+  },
+  {
+    path: '/chat-create',
+    element: (
+      <Default>
+        <CreateChat />
       </Default>
     ),
   },

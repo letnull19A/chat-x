@@ -8,7 +8,7 @@ export type TInputProps = {
 export type TInputfieldProps = {
   message?: string
   title?: string
-  input?: TInputProps
+  input?: InputHTMLAttributes
 }
 
 const Inputfield = (props: TInputfieldProps) => {
@@ -17,13 +17,8 @@ const Inputfield = (props: TInputfieldProps) => {
   return (
     <div className='inputfield'>
       <p className='inputfield__title'>{title}</p>
-      <input
-        className='inputfield__input'
-        {...input}
-      />
-      <span className='inputfield__message'>
-        {message}
-      </span>
+      <input className='inputfield__input' {...input} />
+      <span className='inputfield__message'>{message}</span>
     </div>
   )
 }
